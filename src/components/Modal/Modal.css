@@ -1,0 +1,144 @@
+/* 🔹 Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 🔹 Right Modal */
+.modal-content.right {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 95%;
+  background: white;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(100%);
+  opacity: 1;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.modal-content.right.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.modal-content.right.closing {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* 🔹 Left Modal */
+.modal-content.left {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 95%;
+  background: white;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.modal-content.left.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.modal-content.left.closing {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Center Modal */
+.modal-content.center {
+  position: relative;
+  width: 95%; /* Default width */
+  max-height: 90vh;
+  background: white;
+  border-radius: 9px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.modal-content.center.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content.center.closing {
+  transform: scale(0.75);
+  opacity: 0;
+}
+
+/* Center right Modal */
+.modal-content.center-right {
+  position: fixed;
+  right: 15px;
+  width: 95%; /* Default width */
+  max-height: 90vh;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.modal-content.center-right.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content.center-right.closing {
+  transform: scale(0.75);
+  opacity: 0;
+}
+
+/* 🔹 Fullscreen Modal */
+.modal-content.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.modal-content.fullscreen.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content.fullscreen.closing {
+  transform: scale(0.75);
+  opacity: 0;
+}
