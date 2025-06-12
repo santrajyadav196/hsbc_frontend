@@ -1,12 +1,31 @@
-# React + Vite
+# Hsbc frontend service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This service is used to track user expense. The main tech stack used is React Js with Redux Toolkit for state management and Redux Persist for persisting the state.
 
-Currently, two official plugins are available:
+## Installation (nodejs version - 21.7.3)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run Locally
 
-## Expanding the ESLint configuration
+Clone the project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+  git clone https://github.com/santrajyadav196/hsbc_frontend.git
+```
+
+1. go to the frontend directory
+
+```bash
+  cd frontend
+```
+
+2. Install dependencies
+
+```bash
+  npm install
+```
+
+3. Start the server
+
+```bash
+  npm run dev
+```
