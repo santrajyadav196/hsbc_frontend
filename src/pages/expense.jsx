@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import CreateExpense from "../components/CreateExpense";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchExpenses, deleteExpense } from "../redux/services/expenseService";
+import {
+  fetchExpenses,
+  deleteExpense,
+  fetchFilterExpenses,
+} from "../redux/services/expenseService";
 import ExpenseTable from "../components/ExpenseTable";
 import EditExpense from "../components/EditExpense";
 import DeleteExpense from "../components/DeleteExpense";
 import Pagination from "../components/Pagination";
+import SelectCategory from "../components/SelectCategory";
 
 const Expense = () => {
   const dispatch = useDispatch();
-  const { expenses, totalExpenses } = useSelector((state) => state.expense);
+  const { expenses, totalExpenses, filterExpenses, loading } = useSelector(
+    (state) => state.expense
+  );
 
   const [showModal, setShowModal] = useState(false);
   const [isRefresh, setIsRefresh] = useState(false);
@@ -18,6 +25,7 @@ const Expense = () => {
 
   const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [category, setCategory] = useState("All");
 
   const [page, setPage] = useState(1);
   const limit = 2;
@@ -57,30 +65,56 @@ const Expense = () => {
     }
   };
 
+  const selectCategoryHandler = async (value) => {
+    const data = value.target.value;
+    setCategory(data);
+  };
+
+  useEffect(() => {
+    const obj = {
+      category: category,
+    };
+    dispatch(fetchFilterExpenses(obj));
+  }, [category]);
+
   return (
     <div className="container mt-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <SelectCategory onChange={selectCategoryHandler} />
+        </div>
         <div style={{ fontSize: 24, fontWeight: 500 }}>Expenses</div>
         <button className="btn btn-primary" onClick={() => setShowModal(true)}>
           + New Expense
         </button>
       </div>
 
+      {loading ? (
+        <div
+          className="my-5"
+          style={{ color: "red", fontSize: 20, fontWeight: 600 }}
+        >
+          Loading...
+        </div>
+      ) : (
+        ""
+      )}
+
       {/* Table */}
       <ExpenseTable
-        expenses={expenses}
+        expenses={filterExpenses}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
 
       {/* Pagination */}
 
-      <Pagination
+      {/* <Pagination
         currentPage={page}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-      />
+      /> */}
 
       {/* Modals */}
       <CreateExpense

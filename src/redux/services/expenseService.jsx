@@ -66,3 +66,15 @@ export const fetchExpenseSummary = createAsyncThunk(
     }
   }
 );
+
+export const fetchFilterExpenses = createAsyncThunk(
+  "expense/filter",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await axiosClient.post("/api/filter/expenses", data);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(err?.response?.data.message || err.message);
+    }
+  }
+);

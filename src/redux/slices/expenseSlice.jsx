@@ -6,6 +6,7 @@ import {
   fetchExpenses,
   deleteExpense,
   fetchExpenseSummary,
+  fetchFilterExpenses,
 } from "../services/expenseService";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   error: null,
   totalMonthlyExpense: null,
   categoryBreakdown: null,
+  filterExpenses: [],
 };
 
 const expenseSlice = createSlice({
@@ -101,6 +103,21 @@ const expenseSlice = createSlice({
         state.categoryBreakdown = action.payload.data?.categoryBreakdown;
       })
       .addCase(fetchExpenseSummary.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // filter expensees
+
+      .addCase(fetchFilterExpenses.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchFilterExpenses.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filterExpenses = action.payload.data;
+      })
+      .addCase(fetchFilterExpenses.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
